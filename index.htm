@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - JapaCounter Pro</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-saffron: #D84315; /* Deep Saffron */
+            --accent-gold: #FFB300; /* Golden Yellow */
+            --bg-cream: #FFF8E1; /* Parchment Color */
+            --text-brown: #3E2723; /* Dark Brown */
+            --border-color: #D7CCC8;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--bg-cream);
+            /* Subtle paper texture using CSS gradients */
+            background-image: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,0.4)), 
+                              radial-gradient(#f5deb3 2px, transparent 2px);
+            background-size: 100% 100%, 30px 30px;
+            color: var(--text-brown);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .scroll-container {
+            max-width: 850px;
+            margin: 20px auto;
+            background: #fffbf0;
+            padding: 50px;
+            border-radius: 8px;
+            /* Double border specifically designed for a "Book" feel */
+            border: 1px solid #8D6E63;
+            outline: 5px solid #fffbf0;
+            box-shadow: 
+                0 0 0 6px #8D6E63, /* Outer border */
+                0 20px 40px rgba(0,0,0,0.2); /* Deep shadow */
+            position: relative;
+        }
+
+        /* Ornamental Header Design */
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-saffron);
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1em;
+            color: #8D6E63;
+            font-style: italic;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* Decorative line under title */
+        .subtitle::after {
+            content: "♦ 🕉 ♦";
+            display: block;
+            margin-top: 15px;
+            color: var(--accent-gold);
+            font-size: 1.5em;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: #BF360C;
+            font-size: 1.5em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: #5D4037;
+            font-size: 1.2em;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 15px;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        /* OM Symbol as Bullet */
+        li::before {
+            content: "🕉";
+            position: absolute;
+            left: 0;
+            color: var(--primary-saffron);
+            font-weight: bold;
+            font-size: 1.2em;
+            top: -2px;
+        }
+
+        strong {
+            color: #BF360C;
+        }
+
+        /* Highlight Box for Contact */
+        .contact-box {
+            background-color: #FFF3E0;
+            border-left: 5px solid var(--primary-saffron);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .email-link {
+            color: var(--primary-saffron);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--primary-saffron);
+            transition: all 0.3s ease;
+        }
+
+        .email-link:hover {
+            background-color: var(--primary-saffron);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: none;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #8D6E63;
+            border-top: 1px solid #D7CCC8;
+            padding-top: 30px;
+        }
+
+        .footer span {
+            display: block;
+            margin-top: 10px;
+            font-family: 'Cinzel', serif;
+            color: var(--primary-saffron);
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .scroll-container {
+                padding: 20px;
+                border-width: 1px;
+                box-shadow: none;
+                border: 1px solid #8D6E63; /* Simple border for mobile */
+                outline: none;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            li {
+                padding-left: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-container">
+        <h1>Privacy Policy</h1>
+    
+
+        <p>Namaste! Welcome to <strong>JapaCounter Pro</strong>. Your privacy and the sanctity of your spiritual practice are our top priorities. This Privacy Policy outlines how JapaCounter Pro ("we", "our", or "us") manages your information, specifically focusing on our offline-first architecture, local storage mechanisms, and cloud synchronization.</p>
+
+        <h2>1. Information Collection & Storage</h2>
+        <p>We believe in absolute data transparency. Our app utilizes a secure hybrid storage model designed to respect your data ownership:</p>
+        <ul>
+            <li><strong>Local SQLite Database:</strong> All your primary chanting data—including mantra names, individual japa counts, total session history, and timestamped logs—is stored in a structured <strong>SQLite database file</strong> directly on your device. This ensures complete functionality even when <strong>OFFLINE</strong>.</li>
+            <li><strong>Data Persistence Strategy:</strong> We use Android auto-backup rules. Your SQLite database remains protected even if you <strong>uninstall the app</strong>, allowing for seamless data restoration upon reinstallation.</li>
+            <li><strong>Firebase Authentication:</strong> We utilize Google Firebase <strong>solely for user authentication</strong>. We verify your identity using basic details (Name, Email). We do not store your japa counts on the cloud unless explicitly synced by you.</li>
+        </ul>
+
+        <h3>Permissions Used</h3>
+        <p>JapaCounter Pro requires only the following device permissions to function correctly:</p>
+        <ul>
+            <li><strong>Microphone Permission:</strong> Used exclusively for optional voice-based japa counting. Audio is <strong>never recorded, stored, or transmitted</strong>. All voice processing happens locally on your device in real-time.</li>
+            <li><strong>Notification Permission:</strong> Used to send daily japa reminders and streak notifications at auspicious times. No promotional or third-party notifications are sent.</li>
+        </ul>
+        <p>We strictly do <strong>not</strong> access your contacts, photos, files, location, or any other personal data.</p>
+
+        <h2>2. Special Features Handling</h2>
+        <ul>
+            <li><strong>Custom Mantras:</strong> These are strictly local entries, stored only on your device to maintain privacy.</li>
+            <li><strong>Daily Streaks:</strong> Your consistency is calculated based on local logs only.</li>
+            <li><strong>Offline Mode:</strong> Chanting and viewing history do not require an internet connection.</li>
+        </ul>
+
+        <h2>3. Use of Collected Information</h2>
+        <p>The limited information we collect is used to:</p>
+        <ul>
+            <li>Generate insightful progress charts and mantra-wise statistics.</li>
+            <li>Maintain your <b>Daily Streak</b> to encourage consistency.</li>
+            <li>Improve app stability through anonymous crash reporting.</li>
+        </ul>
+
+        <h2>4. Data Security</h2>
+        <ul>
+            <li><strong>Encryption:</strong> Your device's operating system provides hardware-level encryption for the app's data folders.</li>
+            <li><strong>Firebase Security:</strong> We adhere to industry-standard security protocols to prevent any unauthorized access.</li>
+        </ul>
+
+        <h2>5. Your Rights & Contact</h2>
+        <div class="contact-box">
+            <p>You have full control over your data. You can manually reset counts within the app settings.</p>
+            <p>If you have questions, suggestions, or wish to request account erasure, please contact our support team at:</p>
+            <p style="text-align: center; font-size: 1.1em; margin-top: 15px;">
+                📧 <a href="mailto:japacounterpro@gmail.com" class="email-link">japacounterpro@gmail.com</a>
+            </p>
+        </div>
+
+        <h2>6. Policy Changes</h2>
+        <p>We reserve the right to update this policy as we add new spiritual features to the app. Continued use of the app signifies your acceptance of these changes.</p>
+
+        <div class="footer">
+            &copy; 2026 JapaCounter Pro. All rights reserved.<br>
+            Made with devotion for your spiritual journey.
+            <span>|| Om Shanti Shanti Shanti ||</span>
+        </div>
+    </div>
+
+</body>
+</html>
