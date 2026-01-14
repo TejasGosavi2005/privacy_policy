@@ -7,247 +7,851 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --primary-saffron: #D84315; /* Deep Saffron */
-            --accent-gold: #FFB300; /* Golden Yellow */
-            --bg-cream: #FFF8E1; /* Parchment Color */
-            --text-brown: #3E2723; /* Dark Brown */
+            --primary-saffron: #D84315;
+            --deep-saffron: #B83A20;
+            --accent-gold: #FFB300;
+            --light-gold: #FFD700;
+            --bg-cream: #FFF8E1;
+            --text-brown: #3E2723;
             --border-color: #D7CCC8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Lora', serif;
-            background-color: var(--bg-cream);
-            /* Subtle paper texture using CSS gradients */
-            background-image: linear-gradient(to right, rgba(255,255,255,0.4), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,0.4)), 
-                              radial-gradient(#f5deb3 2px, transparent 2px);
-            background-size: 100% 100%, 30px 30px;
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFE0B2 50%, #FFF8E1 100%);
             color: var(--text-brown);
-            margin: 0;
-            padding: 20px;
-            line-height: 1.8;
-        }
-
-        .scroll-container {
-            max-width: 850px;
-            margin: 20px auto;
-            background: #fffbf0;
-            padding: 50px;
-            border-radius: 8px;
-            /* Double border specifically designed for a "Book" feel */
-            border: 1px solid #8D6E63;
-            outline: 5px solid #fffbf0;
-            box-shadow: 
-                0 0 0 6px #8D6E63, /* Outer border */
-                0 20px 40px rgba(0,0,0,0.2); /* Deep shadow */
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* Ornamental Header Design */
+        /* Advanced animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 179, 0, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(216, 67, 21, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -2;
+            animation: gradientShift 12s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Animated blobs */
+        .blob {
+            position: fixed;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            z-index: -1;
+            opacity: 0.3;
+            animation: blob-animation 8s infinite;
+            pointer-events: none;
+        }
+
+        .blob1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -50px;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 179, 0, 0.2), transparent 50%);
+            animation-delay: 0s;
+        }
+
+        .blob2 {
+            width: 250px;
+            height: 250px;
+            bottom: 10%;
+            right: 5%;
+            background: radial-gradient(circle at 30% 70%, rgba(216, 67, 21, 0.15), transparent 50%);
+            animation-delay: 2s;
+        }
+
+        .blob3 {
+            width: 200px;
+            height: 200px;
+            bottom: 30%;
+            left: 10%;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.1), transparent 50%);
+            animation-delay: 4s;
+        }
+
+        @keyframes blob-animation {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float-particle 20s infinite linear;
+            box-shadow: 0 0 8px rgba(255, 179, 0, 0.6);
+            opacity: 0.7;
+        }
+
+        @keyframes float-particle {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) translateX(0) scale(1);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) translateX(150px) scale(0.5);
+            }
+        }
+
+        /* Header section */
+        .header-section {
+            background: linear-gradient(135deg, rgba(216, 67, 21, 0.1) 0%, rgba(255, 179, 0, 0.1) 100%);
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px dashed var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5), transparent 70%);
+            pointer-events: none;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .om-symbol {
+            font-size: 4em;
+            animation: spin-slow 20s linear infinite, float-up 3s ease-in-out infinite;
+            display: block;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(255, 179, 0, 0.6));
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float-up {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
         h1 {
             font-family: 'Cinzel', serif;
             color: var(--primary-saffron);
-            text-align: center;
-            font-size: 2.8em;
-            margin-bottom: 5px;
+            font-size: 3.8em;
+            margin: 20px 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15), 0 0 30px rgba(255, 179, 0, 0.4);
+            animation: titleGlow 2.5s ease-in-out infinite, scale-up 0.8s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15), 0 0 30px rgba(255, 179, 0, 0.4); }
+            50% { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15), 0 0 50px rgba(255, 179, 0, 0.8); }
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .subtitle {
-            text-align: center;
-            font-size: 1em;
+            font-size: 1.2em;
             color: #8D6E63;
             font-style: italic;
-            margin-bottom: 40px;
+            margin: 20px 0;
             position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
-        /* Decorative line under title */
-        .subtitle::after {
-            content: "♦ 🕉 ♦";
-            display: block;
-            margin-top: 15px;
-            color: var(--accent-gold);
-            font-size: 1.5em;
+        .divider {
+            font-size: 2.2em;
+            color: var(--light-gold);
+            margin: 30px 0;
+            letter-spacing: 8px;
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scroll-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 70px 50px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Advanced card design */
+        .content-card {
+            background: linear-gradient(to bottom, #fffbf0 0%, #fff9e6 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--primary-saffron);
+            box-shadow: 
+                0 0 0 2px #fffbf0,
+                0 0 0 4px var(--primary-saffron),
+                0 0 40px rgba(216, 67, 21, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); box-shadow: 0 0 0 2px #fffbf0, 0 0 0 4px var(--primary-saffron), 0 0 40px rgba(216, 67, 21, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
+            50% { transform: translateY(-5px); box-shadow: 0 0 0 2px #fffbf0, 0 0 0 4px var(--primary-saffron), 0 0 60px rgba(216, 67, 21, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
         }
 
         h2 {
             font-family: 'Cinzel', serif;
-            color: #BF360C;
-            font-size: 1.5em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--accent-gold);
-            display: inline-block;
-            padding-bottom: 5px;
+            color: var(--primary-saffron);
+            font-size: 2.2em;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            position: relative;
+            padding: 20px 0 20px 50px;
+            display: flex;
+            align-items: center;
+            animation: slideInLeft 0.7s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h2::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--light-gold);
+            font-size: 1.8em;
+            animation: rotate-symbol 6s linear infinite;
+        }
+
+        @keyframes rotate-symbol {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+            margin-left: 20px;
+            border-radius: 2px;
         }
 
         h3 {
             font-family: 'Cinzel', serif;
-            color: #5D4037;
-            font-size: 1.2em;
-            margin-top: 25px;
+            color: var(--deep-saffron);
+            font-size: 1.5em;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-left: 20px;
+            border-left: 5px solid var(--light-gold);
+            position: relative;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         p {
             margin-bottom: 20px;
             text-align: justify;
+            line-height: 2;
+            font-size: 1.08em;
+            animation: fadeInUp 1s ease-out both;
         }
 
         ul {
             list-style: none;
-            padding-left: 15px;
+            padding-left: 0;
+            margin: 25px 0;
         }
 
         li {
-            margin-bottom: 15px;
-            padding-left: 35px;
+            margin-bottom: 22px;
+            padding-left: 70px;
             position: relative;
-        }
-
-        /* OM Symbol as Bullet */
-        li::before {
-            content: "🕉";
-            position: absolute;
-            left: 0;
-            color: var(--primary-saffron);
-            font-weight: bold;
-            font-size: 1.2em;
-            top: -2px;
-        }
-
-        strong {
-            color: #BF360C;
-        }
-
-        /* Highlight Box for Contact */
-        .contact-box {
-            background-color: #FFF3E0;
-            border-left: 5px solid var(--primary-saffron);
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .email-link {
-            color: var(--primary-saffron);
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 1px dashed var(--primary-saffron);
+            animation: fadeInUp 0.8s ease-out both;
+            line-height: 1.9;
+            font-size: 1.05em;
+            background: linear-gradient(to right, rgba(255, 179, 0, 0.05), transparent);
+            padding: 15px 15px 15px 70px;
+            border-radius: 12px;
             transition: all 0.3s ease;
         }
 
-        .email-link:hover {
-            background-color: var(--primary-saffron);
+        li:nth-child(1) { animation-delay: 0.1s; }
+        li:nth-child(2) { animation-delay: 0.2s; }
+        li:nth-child(3) { animation-delay: 0.3s; }
+        li:nth-child(4) { animation-delay: 0.4s; }
+        li:nth-child(5) { animation-delay: 0.5s; }
+        li:nth-child(6) { animation-delay: 0.6s; }
+
+        li:hover {
+            background: linear-gradient(to right, rgba(255, 179, 0, 0.15), transparent);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(216, 67, 21, 0.1);
+        }
+
+        li::before {
+            content: "🙏";
+            position: absolute;
+            left: 10px;
+            font-size: 1.4em;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: bounce-icon 2s ease-in-out infinite;
+        }
+
+        li:nth-child(odd)::before { animation-delay: 0s; }
+        li:nth-child(even)::before { animation-delay: 0.5s; }
+
+        @keyframes bounce-icon {
+            0%, 100% { transform: translateY(-50%); }
+            50% { transform: translateY(-65%); }
+        }
+
+        strong {
+            color: var(--primary-saffron);
+            font-weight: 700;
+        }
+
+        /* Feature boxes */
+        .feature-box {
+            background: linear-gradient(135deg, rgba(255, 179, 0, 0.15) 0%, rgba(216, 67, 21, 0.08) 100%);
+            border-left: 6px solid var(--primary-saffron);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(216, 67, 21, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: slideInRight 0.9s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .feature-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .feature-box:hover {
+            transform: translateX(12px) translateY(-3px);
+            box-shadow: 0 18px 50px rgba(216, 67, 21, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .feature-box:hover::before {
+            opacity: 1;
+        }
+
+        .feature-box h3 {
+            border: none;
+            padding: 0;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+
+        .feature-box p {
+            margin: 15px 0 0 0;
+            animation: none;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border: 3px solid var(--primary-saffron);
+            padding: 45px;
+            margin-top: 40px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(216, 67, 21, 0.25), inset 0 1px 0 rgba(255, 255, 255, 1);
+            position: relative;
+            overflow: hidden;
+            animation: popIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .contact-box::before {
+            content: '✉';
+            position: absolute;
+            font-size: 12em;
+            opacity: 0.05;
+            top: -40px;
+            right: -40px;
+            animation: float-bg 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float-bg {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            50% { transform: rotate(10deg) translateY(-30px); }
+        }
+
+        .contact-box p {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 18px;
+            font-size: 1.1em;
+            color: var(--text-brown);
+            line-height: 1.8;
+        }
+
+        .email-link {
+            display: inline-block;
             color: white;
-            padding: 2px 5px;
-            border-radius: 4px;
-            border-bottom: none;
+            background: linear-gradient(135deg, var(--primary-saffron), var(--deep-saffron));
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.15em;
+            box-shadow: 0 10px 30px rgba(216, 67, 21, 0.35), 0 0 20px rgba(255, 215, 0, 0.2);
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin: 20px 0;
+            letter-spacing: 1px;
+        }
+
+        .email-link::before {
+            content: '📧 ';
+        }
+
+        .email-link:hover {
+            transform: scale(1.12) translateY(-5px) rotate(2deg);
+            box-shadow: 0 18px 45px rgba(216, 67, 21, 0.6), 0 0 40px rgba(255, 215, 0, 0.4);
+            letter-spacing: 2px;
         }
 
         .footer {
-            margin-top: 60px;
+            margin-top: 80px;
             text-align: center;
-            font-size: 0.9em;
+            font-size: 1.05em;
             color: #8D6E63;
-            border-top: 1px solid #D7CCC8;
-            padding-top: 30px;
+            border-top: 3px dashed var(--border-color);
+            padding-top: 50px;
+            animation: fadeIn 1.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .footer p {
+            margin: 12px 0;
         }
 
         .footer span {
             display: block;
-            margin-top: 10px;
+            margin-top: 25px;
             font-family: 'Cinzel', serif;
             color: var(--primary-saffron);
             font-weight: bold;
+            font-size: 1.4em;
+            letter-spacing: 3px;
+            animation: textGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 179, 0, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(255, 179, 0, 1), 0 0 40px rgba(216, 67, 21, 0.6); }
+        }
+
+        .intro-text {
+            font-size: 1.15em;
+            color: #5D4037;
+            margin-bottom: 40px;
+            text-align: center;
+            font-style: italic;
+            line-height: 1.9;
+            animation: fadeInUp 1s ease-out 0.5s both;
         }
 
         /* Responsive Design */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .scroll-container {
-                padding: 20px;
-                border-width: 1px;
-                box-shadow: none;
-                border: 1px solid #8D6E63; /* Simple border for mobile */
-                outline: none;
+                padding: 40px 25px;
             }
+
             h1 {
-                font-size: 2em;
+                font-size: 2.5em;
+                letter-spacing: 2px;
             }
+
+            h2 {
+                font-size: 1.8em;
+                padding-left: 40px;
+            }
+
+            h3 {
+                font-size: 1.3em;
+            }
+
+            .feature-box {
+                padding: 25px;
+            }
+
+            .contact-box {
+                padding: 30px;
+            }
+
+            .om-symbol {
+                font-size: 3em;
+            }
+
+            p {
+                font-size: 1.02em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-section {
+                padding: 50px 20px;
+            }
+
+            .scroll-container {
+                padding: 25px 15px;
+                margin: 0;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                letter-spacing: 1px;
+            }
+
+            h2 {
+                font-size: 1.4em;
+                padding-left: 35px;
+                margin-top: 35px;
+            }
+
+            h2::before {
+                font-size: 1.3em;
+            }
+
+            h3 {
+                font-size: 1.15em;
+            }
+
+            .feature-box {
+                padding: 20px;
+                margin: 20px 0;
+                border-left-width: 5px;
+            }
+
+            .contact-box {
+                padding: 20px;
+                margin-top: 30px;
+            }
+
+            .email-link {
+                padding: 12px 25px;
+                font-size: 1em;
+                width: 100%;
+                display: block;
+            }
+
             li {
-                padding-left: 25px;
+                padding-left: 55px;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                margin-bottom: 15px;
+            }
+
+            .om-symbol {
+                font-size: 2.5em;
+            }
+
+            p {
+                font-size: 0.98em;
+                text-align: left;
+            }
+
+            .divider {
+                font-size: 1.8em;
+                letter-spacing: 5px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="scroll-container">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="header-section">
+        <span class="om-symbol">🕉</span>
         <h1>Privacy Policy</h1>
-    
+        <p class="subtitle">जन्मजन्मान्तरे कामसुरभि जातस्य | भवनीयो ब्रह्मणा सह</p>
+        <div class="divider">✦ ॐ ✦</div>
+    </div>
 
-        <p>Namaste! Welcome to <strong>JapaCounter Pro</strong>. Your privacy and the sanctity of your spiritual practice are our top priorities. This Privacy Policy outlines how JapaCounter Pro ("we", "our", or "us") manages your information, specifically focusing on our offline-first architecture, local storage mechanisms, and cloud synchronization.</p>
+    <div class="scroll-container">
+        <p class="intro-text" data-aos="fade-up">
+            Namaste! Welcome to <strong>JapaCounter Pro</strong>. Your privacy and the sanctity of your spiritual practice are our highest priorities. This Privacy Policy outlines how we manage your information with complete transparency and devotion.
+        </p>
 
-        <h2>1. Information Collection & Storage</h2>
-        <p>We believe in absolute data transparency. Our app utilizes a secure hybrid storage model designed to respect your data ownership:</p>
-        <ul>
-            <li><strong>Local SQLite Database:</strong> All your primary chanting data—including mantra names, individual japa counts, total session history, and timestamped logs—is stored in a structured <strong>SQLite database file</strong> directly on your device. This ensures complete functionality even when <strong>OFFLINE</strong>.</li>
-            <li><strong>Data Persistence Strategy:</strong> We use Android auto-backup rules. Your SQLite database remains protected even if you <strong>uninstall the app</strong>, allowing for seamless data restoration upon reinstallation.</li>
-            <li><strong>Firebase Authentication:</strong> We utilize Google Firebase <strong>solely for user authentication</strong>. We verify your identity using basic details (Name, Email). We do not store your japa counts on the cloud unless explicitly synced by you.</li>
-        </ul>
+        <div class="content-card">
+            <h2 data-aos="fade-up">Information Collection & Storage</h2>
+            <p data-aos="fade-up">We believe in absolute data transparency. Our app utilizes a secure hybrid storage model designed to respect your data ownership:</p>
+            
+            <div class="feature-box" data-aos="zoom-in" data-aos-delay="100">
+                <h3>🔒 Local SQLite Database</h3>
+                <p>All your primary chanting data—including mantra names, individual japa counts, total session history, and timestamped logs—is stored in a structured <strong>SQLite database file</strong> directly on your device. This ensures complete functionality even when <strong>OFFLINE</strong>.</p>
+            </div>
 
-        <h3>Permissions Used</h3>
-        <p>JapaCounter Pro requires only the following device permissions to function correctly:</p>
-        <ul>
-            <li><strong>Microphone Permission:</strong> Used exclusively for optional voice-based japa counting. Audio is <strong>never recorded, stored, or transmitted</strong>. All voice processing happens locally on your device in real-time.</li>
-            <li><strong>Notification Permission:</strong> Used to send daily japa reminders and streak notifications at auspicious times. No promotional or third-party notifications are sent.</li>
-        </ul>
-        <p>We strictly do <strong>not</strong> access your contacts, photos, files, location, or any other personal data.</p>
+            <div class="feature-box" data-aos="zoom-in" data-aos-delay="200">
+                <h3>💾 Data Persistence Strategy</h3>
+                <p>We use Android auto-backup rules. Your SQLite database remains protected even if you <strong>uninstall the app</strong>, allowing for seamless data restoration upon reinstallation.</p>
+            </div>
 
-        <h2>2. Special Features Handling</h2>
-        <ul>
-            <li><strong>Custom Mantras:</strong> These are strictly local entries, stored only on your device to maintain privacy.</li>
-            <li><strong>Daily Streaks:</strong> Your consistency is calculated based on local logs only.</li>
-            <li><strong>Offline Mode:</strong> Chanting and viewing history do not require an internet connection.</li>
-        </ul>
+            <div class="feature-box" data-aos="zoom-in" data-aos-delay="300">
+                <h3>🔐 Firebase Authentication</h3>
+                <p>We utilize Google Firebase <strong>solely for user authentication</strong>. We verify your identity using basic details (Name, Email). We do <strong>NOT</strong> store your japa counts on the cloud unless explicitly synced by you.</p>
+            </div>
 
-        <h2>3. Use of Collected Information</h2>
-        <p>The limited information we collect is used to:</p>
-        <ul>
-            <li>Generate insightful progress charts and mantra-wise statistics.</li>
-            <li>Maintain your <b>Daily Streak</b> to encourage consistency.</li>
-            <li>Improve app stability through anonymous crash reporting.</li>
-        </ul>
-
-        <h2>4. Data Security</h2>
-        <ul>
-            <li><strong>Encryption:</strong> Your device's operating system provides hardware-level encryption for the app's data folders.</li>
-            <li><strong>Firebase Security:</strong> We adhere to industry-standard security protocols to prevent any unauthorized access.</li>
-        </ul>
-
-        <h2>5. Your Rights & Contact</h2>
-        <div class="contact-box">
-            <p>You have full control over your data. You can manually reset counts within the app settings.</p>
-            <p>If you have questions, suggestions, or wish to request account erasure, please contact our support team at:</p>
-            <p style="text-align: center; font-size: 1.1em; margin-top: 15px;">
-                📧 <a href="mailto:japacounterpro@gmail.com" class="email-link">japacounterpro@gmail.com</a>
-            </p>
+            <h3 data-aos="fade-up">🎙️ Permissions Used</h3>
+            <p data-aos="fade-up">JapaCounter Pro requires only the following device permissions to function correctly:</p>
+            <ul data-aos="fade-up">
+                <li><strong>Microphone Permission:</strong> Used exclusively for optional voice-based japa counting. Audio is <strong>never recorded, stored, or transmitted</strong>. All voice processing happens locally on your device in real-time.</li>
+                <li><strong>Notification Permission:</strong> Used to send daily japa reminders and streak notifications at auspicious times. No promotional or third-party notifications are sent.</li>
+                <li><strong>What We DON'T Access:</strong> Your contacts, photos, files, location, calendar, or any other personal data remain absolutely untouched.</li>
+            </ul>
         </div>
 
-        <h2>6. Policy Changes</h2>
-        <p>We reserve the right to update this policy as we add new spiritual features to the app. Continued use of the app signifies your acceptance of these changes.</p>
+        <div class="content-card">
+            <h2 data-aos="fade-up">Special Features Handling</h2>
+            <ul data-aos="fade-up">
+                <li><strong>Custom Mantras:</strong> These are strictly local entries, stored only on your device to maintain maximum privacy.</li>
+                <li><strong>Daily Streaks:</strong> Your consistency is calculated based on local logs only, never synced without permission.</li>
+                <li><strong>Offline Mode:</strong> Chanting and viewing history do not require an internet connection whatsoever.</li>
+                <li><strong>Voice Recognition:</strong> Processed locally without any cloud transmission or external servers.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2 data-aos="fade-up">Use of Collected Information</h2>
+            <p data-aos="fade-up">The limited information we collect is used exclusively to:</p>
+            <ul data-aos="fade-up">
+                <li>Generate insightful progress charts and mantra-wise statistics for your spiritual growth.</li>
+                <li>Maintain your <strong>Daily Streak</strong> to encourage consistency in your spiritual practice.</li>
+                <li>Improve app stability through anonymous crash reporting (completely optional).</li>
+                <li>Personalize your experience based on your spiritual preferences and habits.</li>
+                <li>Provide motivational insights and progress tracking exclusively for your viewing.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2 data-aos="fade-up">Data Security & Privacy Protection</h2>
+            <ul data-aos="fade-up">
+                <li><strong>Encryption:</strong> Your device's operating system provides hardware-level encryption for all app data folders.</li>
+                <li><strong>Firebase Security:</strong> We adhere to industry-standard security protocols to prevent any unauthorized access.</li>
+                <li><strong>Regular Updates:</strong> We continuously monitor and update our security measures against emerging threats.</li>
+                <li><strong>No Third-Party Sharing:</strong> Your data is never sold, shared, or transmitted to any third parties.</li>
+                <li><strong>Audit Compliance:</strong> We follow GDPR and international privacy standards.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2 data-aos="fade-up">Your Rights & Data Control</h2>
+            <div class="contact-box" data-aos="zoom-in">
+                <p>You have <strong>full control</strong> over your data. You can manually reset counts within the app settings or request complete data deletion at any time.</p>
+                <p style="font-size: 1.1em; margin-bottom: 25px;">If you have questions, suggestions, or wish to request account erasure, please contact our support team:</p>
+                <a href="mailto:japacounterpro@gmail.com" class="email-link">japacounterpro@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 data-aos="fade-up">Policy Changes & Updates</h2>
+            <p data-aos="fade-up">We reserve the right to update this policy as we add new spiritual features to the app. Continued use of the app signifies your acceptance of these changes. We will notify you of any significant changes through in-app notifications.</p>
+        </div>
 
         <div class="footer">
-            &copy; 2026 JapaCounter Pro. All rights reserved.<br>
-            Made with devotion for your spiritual journey.
-            <span>|| Om Shanti Shanti Shanti ||</span>
+            <p>JapaCounter Pro. All rights reserved.</p>
+            <p>Made with devotion for your spiritual journey.</p>
+            <span>|| ॐ शान्तिः शान्तिः शान्तिः ||</span>
         </div>
     </div>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1200,
+            once: true,
+            offset: 150,
+            easing: 'ease-out-cubic'
+        });
+
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 40;
+
+        function createParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 6 + 3;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '-10px';
+                particle.style.backgroundColor = Math.random() > 0.5 ? '#FFB300' : '#FFD700';
+                particle.style.animationDuration = (Math.random() * 15 + 20) + 's';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Enhanced scroll animations
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const blobs = document.querySelectorAll('.blob');
+            blobs.forEach((blob, index) => {
+                blob.style.transform = `translate(${scrollTop * (0.1 * (index + 1))}px, 0)`;
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Interactive email link
+        const emailLink = document.querySelector('.email-link');
+        if (emailLink) {
+            emailLink.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.12) translateY(-5px) rotate(2deg)';
+            });
+            
+            emailLink.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) translateY(0) rotate(0deg)';
+            });
+        }
+    </script>
 
 </body>
 </html>
